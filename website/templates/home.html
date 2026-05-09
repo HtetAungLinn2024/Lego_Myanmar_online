@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<div class="container text-center">
+    <div class="row" style="margin: 10px;">
+
+        <div class="col" style="margin: 3px;">
+            <div class="list-group" id="right1">
+
+                <a href="/search?query=lego city" class="list-group-item list-group-item-action">
+                    <i class="bi bi-building-fill-gear"></i>
+                    <span class="link-name">LEGO City</span>
+                </a>
+
+                <a href="/search?query=marvel" class="list-group-item list-group-item-action">
+                    <i class="bi bi-badge-tm-fill"></i>
+                    <span class="link-name">Marvel</span>
+                </a>
+
+                <a href="/search?query=anime" class="list-group-item list-group-item-action">
+                    <i class="bi bi-skip-forward-btn-fill"></i>
+                    <span class="link-name">Anime</span>
+                </a>
+
+                <a href="/search?query=minifigure" class="list-group-item list-group-item-action">
+                    <i class="bi bi-vector-pen"></i>
+                    <span class="link-name">Minifigures</span>
+                </a>
+
+                <a href="/search?query=army" class="list-group-item list-group-item-action">
+                    <i class="bi bi-wrench-adjustable-circle-fill"></i>
+                    <span class="link-name">Army</span>
+                </a>
+
+                <a href="/search?query=architecture" class="list-group-item list-group-item-action">
+                    <i class="bi bi-bank2"></i>
+                    <span class="link-name">Architecture</span>
+                </a>
+
+                <a href="/search?query=minecraft" class="list-group-item list-group-item-action">
+                    <i class="bi bi-box"></i>
+                    <span class="link-name">Minecraft</span>
+                </a>
+
+                <a href="/search?query=lego icons" class="list-group-item list-group-item-action">
+                    <i class="bi bi-flower1"></i>
+                    <span class="link-name">LEGI Icons</span>
+                </a>
+
+                <a href="/search?query=figures" class="list-group-item list-group-item-action">
+                    <i class="bi bi-person-standing"></i>
+                    <span class="link-name">Figures</span>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- carousel slider -->
+        <div class="col-md-7" style="margin: 3px;">
+        <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+
+            <!-- Images -->
+            <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                    <img src="{{ url_for('static', filename='images/home1.jpg') }}" 
+                        class="d-block w-100" 
+                        style="height: 365px; object-fit: cover; border-radius: 10px;">
+                </div>
+
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/home2.jpg') }}" 
+                        class="d-block w-100" 
+                        style="height: 365px; object-fit: cover; border-radius: 10px;">
+                </div>
+
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/home3.jpg') }}" 
+                        class="d-block w-100" 
+                        style="height: 365px; object-fit: cover; border-radius: 10px;">
+                </div>
+
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/home4.jpg') }}" 
+                        class="d-block w-100" 
+                        style="height: 365px; object-fit: cover; border-radius: 10px;">
+                </div>
+
+            </div>
+
+            <!-- Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+
+        </div>
+        </div>
+
+        <div class="col-md-2">
+
+            <div class="row" style="background-color: white; border-radius: 10px;">
+
+                <div class="row" style="display: flex; margin-top: 5px;">
+                    <div class="col">
+                        <img src="{{ url_for('static', filename='images/help.png') }}" alt="" style="width: 30px; height: 30px; margin-left: -30px;">
+                    </div>
+                    <div class="col">
+                        <h6 style="font-family:'Times New Roman', Times, serif; font-size: 12px; margin-left: -40px; font-weight: 600;">HELP CENTER</h6>
+                        <p style="font-size: small; color: gray; margin-left: -30px; margin-top: -10px;">Customer care</p>
+                    </div>
+                </div>
+
+                <div class="row" style="display: flex; margin-top: 5px;">
+                    <div class="col">
+                        <img src="{{ url_for('static', filename='images/return.png') }}" alt="" style="width: 30px; height: 30px; margin-left: -30px;">
+                    </div>
+                    <div class="col">
+                        <h6 style="font-family:'Times New Roman', Times, serif; font-size: 12px; margin-left: -40px; font-weight: 600;">EASY RETURN</h6>
+                        <p style="font-size: small; color: gray; margin-left: -30px; margin-top: -10px;">Quick Refund</p>
+                    </div>
+                </div>
+
+                <div class="row" style="display: flex; margin-top: 5px;">
+                    <div class="col">
+                        <img src="{{ url_for('static', filename='images/payment.png') }}" alt="" style="width: 30px; height: 30px; margin-left: -30px;">
+                    </div>
+                    <div class="col">
+                        <h6 style="font-family:'Times New Roman', Times, serif; font-size: 12px; margin-left: -40px; font-weight: 600;">SELL ON <br>LEGO MYANMR</h6>
+                        <p style="font-size: small; color: gray; margin-left: -30px; margin-top: -10px;">FBA Program</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row" style="margin-top: 12px;">
+                <div class="col">
+                    <img src="{{ url_for('static', filename='images/homegif.gif') }}" alt="" class="right2">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container text-center">
+    <div class="row" style="margin: 8px;">
+
+        <div class="col" style="display: flex; background-color: white; border-radius: 10px; padding: 7px; margin: 5px;">
+            <img src="{{ url_for('static', filename='images/real_engineer.png') }}" alt="" style="width: 30px; height: 30px;">
+            <h6 style="margin: 4px;">Real Engineer</h6>
+        </div>
+
+        <div class="col" style="display: flex; background-color: white; border-radius: 10px; padding: 7px; margin: 5px;">
+            <img src="{{ url_for('static', filename='images/quick_delivery.png') }}" alt="" style="width: 30px; height: 30px;">
+            <h6 style="margin: 4px;">Quick Delivery</h6>
+        </div>
+
+        <div class="col" style="display: flex; background-color: white; border-radius: 10px; padding: 7px; margin: 5px;">
+            <img src="{{ url_for('static', filename='images/find_builds.png') }}" alt="" style="width: 30px; height: 30px;">
+            <h6 style="margin: 4px;">Find Builds</h6>
+        </div>
+
+        <div class="col" style="display: flex; background-color: white; border-radius: 10px; padding: 7px; margin: 5px;">
+            <img src="{{ url_for('static', filename='images/real_time_shopping.png') }}" alt="" style="width: 30px; height: 30px;">
+            <h6 style="margin: 4px;">Real Time Shopping</h6>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container text-center">
+    <div class="row" style="margin: 8px; background-color: rgb(219, 218, 218);" id="column">
+
+        {% for item in items %}
+
+        <div class="col" style="background-color: white;">
+            <a href="/item/{{ item.id }}">
+                {% if item.images %}
+                <img src="{{ item.images[0].image_url }}" style="height:202px; width:180px; border-radius:10px;">
+                {% else %}
+                <img src="{{ url_for('static', filename='images/default.png') }}" style="height:202px; width:180px;">
+                {% endif %}
+            </a>
+            <div class="row" style="margin-top: 5px;">
+                <h6 style="color: gray;">{{ item.product_name }}</h6>
+            </div>
+
+            <div class="row" style="margin-top: 10px;">
+
+                <div class="col">
+                    <h5 style="font-weight: 600; font-family: 'Times New Roman', Times, serif;">{{ item.current_price }}</h5>
+                    <strike><p style="color: gray;">{{ item.previous_price }}</p></strike>
+                </div>
+
+                <div class="col">
+                    <a href="/add_to_cart/{{ item.id }}">Add</a>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <p>{{ item.in_stock }} Items Left</p>
+            </div>
+        </div>
+
+        {% endfor %}
+        
+    </div>
+</div>
+
+
+
+{% endblock %}

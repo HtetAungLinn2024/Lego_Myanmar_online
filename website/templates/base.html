@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="icon"  sizes="64x64" href="{{ url_for('static', filename='images/Logo.png') }}" type="image/png">
+    <title>Lego Myanmar  {% block title %}{% endblock %}</title>
+</head>
+<body style="background-color: rgb(222, 218, 228)">
+<div id="loader">
+    Loading...
+</div>
+
+<div id="content" style="display: none;">
+<!-- navbar section -->
+    <nav class="navbar navbar-expand-lg" style="background-color: white;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/" style="color: d; font-size: 30px; margin-right: -2px;">
+                <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo" width="40" height="40" class="me-2">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/" style="font-family: cursive; font-size: 19px;">
+                            Lego Myanmar
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-grey" href="/about_us" style="font-size: 17px;">About Us</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-grey" href="/contact_us"style="font-size: 17px;">Contact us</a>
+                    </li>
+
+                </ul>
+
+                <form class="d-flex" role="search" action="/search" style="margin-right: 170px;" method="POST">
+                    <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn" type="submit">Search</button>
+                </form>
+
+            </div>
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <li class="nav-item mx-2" id="items">
+                    {% if cart | length < 1 %}
+                    <a class="nav-link text-grey" href="/cart">
+                        <span class="badge bg-success"></span> Cart
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
+                    {% else %}
+                    <a class="nav-link text-grey" href="/cart">
+                        <span class="badge bg-success"></span> Cart
+                        <i class="bi bi-{{ cart | length }}-square"></i>
+                    </a>
+                    {% endif %}
+                </li>
+
+                <li class="nav-item dropdown mx-2">
+                    <a class="nav-link dropdown-toggle text-grey" href="#" role="button"
+                        id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        Account
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+
+                        {% if current_user.is_authenticated %}
+                        <li><a class="dropdown-item" href="/profile/{{ current_user.id }}"><i class="fa-solid fa-user"></i> Profile</a></li>
+                        <li><a class="dropdown-item" href="/order"><i class="fa-solid fa-truck-fast"></i> Orders</a></li>
+                        <li><a class="dropdown-item" href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></li>
+                        {% else %}
+                        <li><a class="dropdown-item" href="/login"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+
+                <!-- PROFILE PHOTO -->
+                {% if current_user.is_authenticated %}
+                <li class="nav-item mx-1">
+                    <a href="/profile/{{ current_user.id }}">
+                        <img src="{{ current_user.profile_photo if current_user.profile_photo else '/static/images/default_user.png' }}" 
+                            alt="User" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 1px solid #ddd;">
+                    </a>
+                </li>
+                {% endif %}
+
+            </ul>
+
+        </div>
+    </nav>
+
+    {% for message in get_flashed_messages() %}
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 5px;">
+            <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    {% endfor %}
+
+    {% block body %}
+    {% endblock %}
+
+
+    <footer class="container-fluid text-center p-2 mt-5" style="background-color: rgb(74, 29, 179); color: white;">
+        <a href="https://github.com/HtetAungLinn2024" style="color: white;">Lego Myanmar</a> |
+        <span>
+            <i class="fa-regular fa-copyright"></i>
+        </span>
+        2026 All rights reserved
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/jquery.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/all.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/owl.carousel.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/myScript.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/style.js')}}"></script>
+</div>
+</body>
+</html>

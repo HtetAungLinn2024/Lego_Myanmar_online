@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %} | Profile {% endblock %}
+
+{% block body %}
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-3 text-center">
+            
+            <!-- Profile Image -->
+            <div class="mb-3">
+                {% if customer.profile_photo %}
+                    <img src="{{ customer.profile_photo }}" 
+                         style="width:165px; height:165px; border-radius:50%; object-fit:cover; border: 3px solid white;">
+                {% else %}
+                    <img src="/media/profile_photo.png" 
+                         style="width:165px; height:165px; border-radius:50%; border: 3px solid white;">
+                {% endif %}
+            </div>
+
+            <!-- Upload Form -->
+            <form id="uploadForm" action="/upload_profile" method="POST" enctype="multipart/form-data">
+                <input type="file" id="fileInput" name="profile_photo" style="display:none;" onchange="autoUpload()">
+                <button type="button" class="btn btn-secondary btn-sm mt-2" onclick="openFile()">Upload Photo</button>
+            </form>
+            <script>
+                function openFile() {
+                    document.getElementById("fileInput").click();
+                }
+                function autoUpload() {
+                    document.getElementById("uploadForm").submit();
+                }
+            </script>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-3" style="border-radius: 12px; border: none;">
+                <div class="card-body">
+                    <h5 class="mb-0 text-dark"><strong>Name:</strong> {{ customer.username }}</h5>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border-radius: 12px; border: none;">
+                <div class="card-body">
+                    <p class="mb-0 text-dark"><strong>Email:</strong> {{ customer.email }}</p>
+                </div>
+            </div>
+
+            <div>
+                <a href="/change-password/{{ customer.id }}" class="btn btn-warning">
+                    Change Password
+                </a>
+            </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: Admin Controls -->
+        <div class="col-md-3">
+            {% if customer.id == 1 %}
+                <div class="card" style="border-radius: 12px; background-color: rgba(255,255,255,0.1); border: 1px solid white;">
+                    <div class="card-body">
+                        <h5 class="text-white text-center mb-3">Admin Panel</h5>
+                        <div class="d-grid gap-2">
+                            <a href="/customers" class="btn btn-light">Customers</a>
+                            <a href="/shop_items" class="btn btn-light">Shop Items</a>
+                            <a href="/view_orders" class="btn btn-light">View Orders</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
